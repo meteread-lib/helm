@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "meteread.fullname" . }}-meteread
+  labels:
+    {{- include "meteread.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "meteread.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "meteread.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: meteread
+          image: "{{ .Values.meteread.image }}:{{ .Values.meteread.tag }}"
+          args:
+            {{- toYaml .Values.meteread.command | nindent 12 }}
+          env:
+            - name: INFLUXDB_URL
+              value: "http://{{ include "meteread.fullname" . }}-influxdb:{{ .Values.influxdb.service.port }}"
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: serial-device
+              mountPath: {{ .Values.meteread.serialDevice }}
+      volumes:
+        - name: serial-device
+          hostPath:
+            path: {{ .Values.meteread.serialDevice }}

@@ -1,0 +1,15 @@
+meteread:
+  image: ghcr.io/meteread-lib/meteread
+  tag: main
+  command:
+    - read
+    - electricity_and_gas
+  serialDevice: /dev/ttyUSB0
+
+influxdb:
+  image: influxdb
+  tag: 3-core
+  dataStorage: 10Gi
+  pluginsStorage: 1Gi
+  service:
+    port: 8181

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "meteread.fullname" . }}-influxdb
+  labels:
+    {{- include "meteread.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "influxdb.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "meteread.fullname" . }}-influxdb
+  template:
+    metadata:
+      labels:
+        {{- include "influxdb.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: influxdb
+          image: "{{ .Values.influxdb.image }}:{{ .Values.influxdb.tag }}"
+          command:
+            - influxdb3
+            - serve
+            - --node-id=node0
+            - --object-store=file
+            - --data-dir=/var/lib/influxdb3/data
+            - --plugin-dir=/var/lib/influxdb3/plugins
+            - --without-auth
+          ports:
+            - containerPort: {{ .Values.influxdb.service.port }}
+              name: http
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/influxdb3/data
+            - name: plugins
+              mountPath: /var/lib/influxdb3/plugins
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "meteread.fullname" . }}-influxdb-data
+        - name: plugins
+          persistentVolumeClaim:
+            claimName: {{ include "meteread.fullname" . }}-influxdb-plugins
