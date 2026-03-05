@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - helm/**
+      - meteread/**
 
 jobs:
   release:
@@ -20,7 +20,7 @@ jobs:
         uses: azure/setup-helm@v4
 
       - name: Package chart
-        run: helm package helm/meteread/ --destination .deploy/
+        run: helm package meteread/ --destination .deploy/
 
       - name: Generate index
         run: helm repo index .deploy/ --url https://meteread-lib.github.io/meteread
