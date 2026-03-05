@@ -26,9 +26,6 @@ spec:
             - --data-dir=/var/lib/influxdb3/data
             - --plugin-dir=/var/lib/influxdb3/plugins
             - --without-auth
-          env:
-            - name: MALLOC_CONF
-              value: "abort_conf:false,lg_page:16"
           ports:
             - containerPort: {{ .Values.influxdb.service.port }}
               name: http

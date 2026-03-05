@@ -7,8 +7,8 @@ meteread:
   serialDevice: /dev/ttyUSB0
 
 influxdb:
-  image: influxdb
-  tag: 3-core
+  image: ghcr.io/refluxdb/refluxdb
+  tag: latest
   dataStorage: 10Gi
   pluginsStorage: 1Gi
   service:
