@@ -21,16 +21,35 @@ Deploys the full meteread stack: the meteread app and InfluxDB 3.
 - Helm 3
 - A node with a DSMR v5 smart meter connected via serial (default `/dev/ttyUSB0`)
 
-#### Install
+#### Install from local chart
 
 ```bash
 helm install meteread helm/meteread/
+```
+
+#### Install from Helm repo
+
+```bash
+helm repo add meteread-lib https://meteread-lib.github.io/meteread
+helm repo update
+helm install meteread meteread-lib/meteread
+```
+
+#### Install from OCI registry
+
+```bash
+echo $GITHUB_TOKEN | helm registry login ghcr.io -u <username> --password-stdin
+helm install meteread oci://ghcr.io/meteread-lib/meteread --version 0.1.0
 ```
 
 #### Upgrade
 
 ```bash
 helm upgrade meteread helm/meteread/
+# or from repo:
+helm upgrade meteread meteread-lib/meteread
+# or from OCI:
+helm upgrade meteread oci://ghcr.io/meteread-lib/meteread --version 0.1.0
 ```
 
 #### Uninstall
