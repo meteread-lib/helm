@@ -30,7 +30,7 @@ helm install meteread helm/meteread/
 #### Install from Helm repo
 
 ```bash
-helm repo add meteread-lib https://meteread-lib.github.io/meteread
+helm repo add meteread-lib https://meteread-lib.github.io/helm
 helm repo update
 helm install meteread meteread-lib/meteread
 ```

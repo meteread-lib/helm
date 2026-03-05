@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - meteread/**
 
 jobs:
   release:
@@ -23,7 +21,7 @@ jobs:
         run: helm package meteread/ --destination .deploy/
 
       - name: Generate index
-        run: helm repo index .deploy/ --url https://meteread-lib.github.io/meteread
+        run: helm repo index .deploy/ --url https://meteread-lib.github.io/helm
 
       - name: Publish to gh-pages
         uses: peaceiris/actions-gh-pages@v4
