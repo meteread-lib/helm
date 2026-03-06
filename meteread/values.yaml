@@ -7,8 +7,8 @@ meteread:
   serialDevice: /dev/ttyUSB0
 
 influxdb:
-  image: arm64v8/influxdb:3-core
-  tag: latest
+  image: arm64v8/influxdb
+  tag: 3-core
   dataStorage: 5Gi
   pluginsStorage: 1Gi
   service:
