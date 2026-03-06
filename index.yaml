@@ -3,12 +3,12 @@ entries:
   meteread:
   - apiVersion: v2
     appVersion: main
-    created: "2026-03-06T10:10:01.876972443Z"
+    created: "2026-03-06T10:23:23.274879163Z"
     description: Reads utility meter values and stores them in InfluxDB 3
-    digest: efd2c2446b400826c927554642b634ca1de2e6e5b242e0216fd1dfd8f479f60b
+    digest: 078d9dafcb65f0421802413856c7018fafe5e267f51bf66299b8d4666bbd538e
     name: meteread
     type: application
     urls:
     - https://meteread-lib.github.io/helm/meteread-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-06T10:10:01.876164333Z"
+generated: "2026-03-06T10:23:23.274556386Z"
