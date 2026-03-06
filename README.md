@@ -81,7 +81,7 @@ kubectl delete pvc meteread-influxdb-data meteread-influxdb-plugins
 Example — change serial device and meter command:
 
 ```bash
-helm install meteread helm/meteread/ \
+helm install meteread meteread-lib/meteread \
   --set meteread.serialDevice=/dev/ttyUSB1 \
   --set meteread.command='{read,electricity_and_gas}'
 ```

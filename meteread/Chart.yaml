@@ -2,5 +2,5 @@ apiVersion: v2
 name: meteread
 description: Reads utility meter values and stores them in InfluxDB 3
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: "main"
