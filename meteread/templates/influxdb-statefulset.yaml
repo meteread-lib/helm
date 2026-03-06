@@ -18,11 +18,6 @@ spec:
       containers:
         - name: influxdb
           image: "{{ .Values.influxdb.image }}:{{ .Values.influxdb.tag }}"
-          env:
-            - name: LD_PRELOAD
-              value: ""
-            - name: MALLOC_CONF
-              value: "abort:false"
           command:
             - influxdb3
             - serve

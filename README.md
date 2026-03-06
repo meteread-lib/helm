@@ -72,11 +72,31 @@ kubectl delete pvc meteread-influxdb-data meteread-influxdb-plugins
 | `meteread.tag` | `main` | Image tag |
 | `meteread.command` | `["read", "electricity_and_gas"]` | Meter command |
 | `meteread.serialDevice` | `/dev/ttyUSB0` | Host serial device path |
-| `influxdb.image` | `influxdb` | InfluxDB image |
+| `influxdb.image` | `arm64v8/influxdb` | InfluxDB image |
 | `influxdb.tag` | `3-core` | InfluxDB tag |
 | `influxdb.dataStorage` | `10Gi` | Data PVC size |
 | `influxdb.pluginsStorage` | `1Gi` | Plugins PVC size |
 | `influxdb.service.port` | `8181` | InfluxDB service port |
+
+#### Troubleshooting
+
+**jemalloc: Unsupported system page size**
+
+If the official InfluxDB image crashes with `<jemalloc>: Unsupported system page size`, your node's kernel uses a non-4KB page size (e.g. 16KB on ARM64 or recent Fedora kernels). The bundled jemalloc is compiled for 4KB pages only and cannot be overridden at runtime.
+
+To fix this, build a custom InfluxDB image without jemalloc using the Dockerfile in `docker/influxdb/`:
+
+```bash
+docker build -t my-influxdb:3-core docker/influxdb/
+```
+
+Then update `values.yaml` to use your custom image:
+
+```yaml
+influxdb:
+  image: my-influxdb
+  tag: 3-core
+```
 
 Example — change serial device and meter command:
 
