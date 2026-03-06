@@ -1,6 +1,7 @@
 meteread:
   image: ghcr.io/meteread-lib/meteread
   tag: main
+  updateStrategy: RollingUpdate
   command:
     - read
     - electricity_and_gas
@@ -9,6 +10,7 @@ meteread:
 influxdb:
   image: arm64v8/influxdb
   tag: 3-core
+  updateStrategy: RollingUpdate
   dataStorage: 5Gi
   pluginsStorage: 1Gi
   service:
