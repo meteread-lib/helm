@@ -7,9 +7,9 @@ meteread:
   serialDevice: /dev/ttyUSB0
 
 influxdb:
-  image: ghcr.io/refluxdb/refluxdb
+  image: ghcr.io/metrico/influxdb3-unlocked
   tag: latest
-  dataStorage: 10Gi
+  dataStorage: 5Gi
   pluginsStorage: 1Gi
   service:
     port: 8181
