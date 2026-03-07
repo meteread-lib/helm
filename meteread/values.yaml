@@ -8,8 +8,8 @@ meteread:
   serialDevice: /dev/ttyUSB0
 
 influxdb:
-  image: arm64v8/influxdb
-  tag: 3-core
+  image: ghcr.io/meteread-lib/influxdb
+  tag: main
   updateStrategy: RollingUpdate
   dataStorage: 5Gi
   pluginsStorage: 1Gi
