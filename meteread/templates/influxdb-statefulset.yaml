@@ -18,6 +18,7 @@ spec:
       containers:
         - name: influxdb
           image: "{{ .Values.influxdb.image }}:{{ .Values.influxdb.tag }}"
+          imagePullPolicy: Always
           command:
             - influxdb3
             - serve

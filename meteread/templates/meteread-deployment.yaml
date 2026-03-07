@@ -17,6 +17,7 @@ spec:
       containers:
         - name: meteread
           image: "{{ .Values.meteread.image }}:{{ .Values.meteread.tag }}"
+          imagePullPolicy: Always
           args:
             {{- toYaml .Values.meteread.command | nindent 12 }}
           env:
